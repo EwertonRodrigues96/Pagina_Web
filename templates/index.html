@@ -2,59 +2,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' type="text/css"   href="estilo.css">
-    <title>Document</title>
+    <link rel='stylesheet' type="text/css" href="{{ url_for('static',filename='styles/estilo.css') }}">
+    <title>Document</title>              
 </head>
 <body>
     <h1 id="titulo">Centro das bibliotecas</h1>
     <div class="barra_esquerda">
         <ul>
-            <li>Bibliotecas python
-                <ul>
-                    <li>
-                        Machine learning
-                        <ul>
-                            <li>scikit-learn</li>
-                            <li>Keras</li> 
-                            <li>XgBoot</li>
-                            
+            {%for classe,bibliotecas in classes.items()  %}
+                <li>{{classe}}
+                 
+            <ul >    
+                {%  for key,values in bibliotecas.items() %}
+                    <li>{{ key }}
+                    <ul>
+                    {% for value in values %}
+                        <li>{{value}}
+                    {% endfor%}
                         </ul>
-                    </li>
-                    <li>
-                        Data Visualization
-                        <ul>
-                            <li>Matplotib</li>
-                            <li>Seaborn</li>
-                            <li>Bokeh</li>
-
-                        </ul>
-                    
-                    
-                    </li>
-                    <li>Processamento de Linguagem Natural
-                        <ul>
-                        <li>NLTK</li>
-                        <li>Spacy</li>
-                        <li>Gensim</li>
-                        </ul>
-
-                    </li>
-                    <li>
-                        Distributed Deep Learning
-                        <ul>
-                            <li>Dist-keras</li>
-                            <li>elephas</li>
-                            <li>spark-deep-learning</li>
-                        </ul>
-
-                    </li>
-                </ul>
-
-
-
-
-            </li>
+                </li>
+                {% endfor %}
+            {%endfor%}
+            </ul>
+            </ul>
+                 
         </ul>
+
 
 
     </div>
@@ -74,13 +47,15 @@
 
             </div>
 
+            {{ url_for('static',filename='styles/estilo.css') }}
+
             <div class="posicao_imagem_git">
-                     <img src="imagens/icon_github.png"  height="100" width="100">
+                     <img src="{{ url_for('static',filename='images/icon_github.png')}}"  height="100" width="100">
                      <p ><a class="link_git" href="#">Acesse o projeto no git</a></p>
             </div>
             
             <div  class="posicao_imagem_documentacao">
-                <img src="imagens/icon_documentacao.png"  height="100" width="100">
+                <img src="{{url_for('static',filename='images/icon_documentacao.png')}}"  height="100" width="100">
                 <p ><a class="link_documentacao" href="#">Acesse a Documentação</a></p>
          </div>
 
